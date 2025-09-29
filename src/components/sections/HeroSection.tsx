@@ -1,269 +1,170 @@
+// src/components/sections/HeroSection.tsx
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Star, 
-  CheckCircle, 
-  TrendingUp,
-  Users,
-  Award,
-  PlayCircle
-} from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { COMPANY, SERVICES } from '@/utils/constants';
-
-const stats = [
-  {
-    icon: TrendingUp,
-    value: '39%',
-    label: 'Average Revenue Increase',
-    highlighted: true
-  },
-  {
-    icon: Users,
-    value: '150+',
-    label: 'Properties Managed',
-    highlighted: false
-  },
-  {
-    icon: Award,
-    value: '98%',
-    label: 'Client Satisfaction',
-    highlighted: false
-  },
-  {
-    icon: Star,
-    value: '6+',
-    label: 'Years Experience',
-    highlighted: false
-  }
-];
-
-const keyFeatures = [
-  'AI-powered revenue optimization',
-  'Multi-platform distribution (20+ channels)',
-  '24/7 professional guest support',
-  'Complete legal compliance & AL licensing'
-];
+import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: '500+', label: 'Properties Managed' },
+    { value: '96%', label: 'Occupancy Rate' },
+    { value: '4.8/5', label: 'Client Rating' },
+  ];
+
+  const features = [
+    'Full Property Management',
+    'Online Management',
+    '24/7 Support',
+    'Multi-language Service',
+  ];
+
   return (
-    <section className="section-hero bg-gradient-to-br from-light-50 via-white to-primary-50/30 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb400' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-gray-50 via-white to-primary-50/30 overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-0 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="text-left"
           >
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-800 text-sm font-medium mb-6"
+              className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 rounded-full px-4 py-2 mb-6"
             >
               <Star className="h-4 w-4 fill-current" />
-              <span>{COMPANY.experience} of Excellence in Portugal</span>
+              <span className="text-sm font-medium">{t.about.yearsExperience}</span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Main Heading */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-display-xl text-dark-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-dark-900 mb-6 leading-tight"
             >
-              <span className="block">Luxury Property</span>
-              <span className="block text-gradient-primary">Management</span>
-              <span className="block">in Portugal</span>
+              {t.hero.title}
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg text-light-600 mb-8 max-w-xl mx-auto lg:mx-0"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-gray-600 mb-8 leading-relaxed"
             >
-              Transform your property into a profitable vacation rental with our premium management services. 
-              Choose between Full Management (30%) or Online Management (12.5%) packages.
+              {t.hero.subtitle}
             </motion.p>
 
-            {/* Key Features */}
+            {/* Features List */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8"
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="grid grid-cols-2 gap-4 mb-8"
             >
-              {keyFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 text-sm text-dark-700">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center space-x-2">
                   <CheckCircle className="h-5 w-5 text-primary-600 flex-shrink-0" />
-                  <span>{feature}</span>
+                  <span className="text-gray-700">{feature}</span>
                 </div>
               ))}
             </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4 mb-8"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4"
             >
-              <Button 
-                size="lg" 
-                className="group"
-                rightIcon={<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}
+              <Link
+                href="/contact"
+                className="btn-primary group inline-flex items-center justify-center"
               >
-                <Link href="/contact" className="flex items-center gap-2">
-                  Get Free Assessment
-                </Link>
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                leftIcon={<PlayCircle className="h-5 w-5" />}
+                {t.hero.cta1}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/services"
+                className="btn-secondary inline-flex items-center justify-center"
               >
-                <Link href="/services" className="flex items-center gap-2">
-                  View Services
-                </Link>
-              </Button>
+                {t.hero.cta2}
+              </Link>
             </motion.div>
 
             {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200"
             >
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="text-center lg:text-left">
-                    <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg mb-2 ${
-                      stat.highlighted 
-                        ? 'bg-primary-100 text-primary-600' 
-                        : 'bg-light-100 text-light-600'
-                    }`}>
-                      <IconComponent className="h-5 w-5" />
-                    </div>
-                    <div className={`text-2xl font-bold mb-1 ${
-                      stat.highlighted ? 'text-primary-600' : 'text-dark-900'
-                    }`}>
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-light-600">{stat.label}</div>
+              {stats.map((stat, index) => (
+                <div key={index}>
+                  <div className="text-2xl font-bold text-primary-600 mb-1">
+                    {stat.value}
                   </div>
-                );
-              })}
+                  <div className="text-sm text-gray-600">{stat.label}</div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Hero Image */}
+          {/* Right Content - Image/Visual */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
-            {/* Main Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/hero/luxury-villa-madeira.jpg"
-                alt="Luxury villa in Madeira managed by VALORA"
-                width={600}
-                height={400}
-                className="w-full h-[400px] lg:h-[500px] object-cover"
-                priority
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyejFq1BTiMOLvj4FaU5CZmvHACDfOwW0GXHN/EySoEZPCgj+bF/8QAI"
-              />
+            <div className="relative aspect-square">
+              {/* Placeholder for hero image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-3xl shadow-2xl">
+                <div className="absolute inset-0 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <div className="text-8xl font-bold mb-4">V</div>
+                    <div className="text-2xl font-semibold">VALORA</div>
+                    <div className="text-sm opacity-90 mt-2">{t.about.foundedIn}</div>
+                  </div>
+                </div>
+              </div>
               
-              {/* Floating Stats Card */}
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <span className="text-xs font-medium text-dark-700">Live Revenue</span>
+              {/* Floating cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 max-w-xs"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="bg-primary-100 rounded-lg p-3">
+                    <CheckCircle className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Certified Excellence</div>
+                    <div className="text-sm text-gray-600">Professional Management</div>
+                  </div>
                 </div>
-                <div className="text-2xl font-bold text-dark-900">€2,847</div>
-                <div className="text-xs text-green-600 font-medium">+39% this month</div>
-              </div>
-
-              {/* Floating Service Cards */}
-              <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-white/20">
-                  <div className="text-primary-600 font-semibold text-sm">{SERVICES.full.commission}%</div>
-                  <div className="text-xs text-dark-600">Full Management</div>
-                </div>
-                <div className="flex-1 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-white/20">
-                  <div className="text-blue-600 font-semibold text-sm">{SERVICES.online.commission}%</div>
-                  <div className="text-xs text-dark-600">Online Management</div>
-                </div>
-              </div>
+              </motion.div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/10 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
           </motion.div>
         </div>
-
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="mt-16 pt-8 border-t border-light-200"
-        >
-          <div className="text-center mb-6">
-            <p className="text-sm text-light-600">Trusted by property owners across Portugal</p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {/* Location badges */}
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                <span className="text-xs font-bold text-primary-600">M</span>
-              </div>
-              <span className="text-sm text-dark-600">Madeira</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                <span className="text-xs font-bold text-primary-600">L</span>
-              </div>
-              <span className="text-sm text-dark-600">Lisbon</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                <span className="text-xs font-bold text-primary-600">C</span>
-              </div>
-              <span className="text-sm text-dark-600">Comporta</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                <span className="text-xs font-bold text-primary-600">A</span>
-              </div>
-              <span className="text-sm text-dark-600">Algarve</span>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
