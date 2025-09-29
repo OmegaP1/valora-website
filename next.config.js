@@ -4,18 +4,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  // Remove experimental.appDir - it's now default in Next.js 14
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com'],
     formats: ['image/webp', 'image/avif'],
   },
-  i18n: {
-    locales: ['en', 'pt', 'es', 'fr', 'de', 'zh'],
-    defaultLocale: 'en',
-    localeDetection: true,
-  },
+  // Remove i18n config when using App Router - handle it manually
   async headers() {
     return [
       {

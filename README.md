@@ -402,30 +402,11 @@ For support and questions:
 
 ### Phase 2: Advanced Features
 - [ ] **Real Estate Section** - Property listings and sales integration
-- [ ] **Multilingual Content Management** - Dynamic language switching with CMS
-- [ ] **Property Owner Portal** - Dashboard for owners to track performance
-- [ ] **Advanced Analytics Dashboard** - Detailed property and revenue analytics
 - [ ] **Online Booking System** - Direct booking integration with calendars
 - [ ] **Payment Processing** - Automated fee collection and owner payouts
-- [ ] **Mobile App Companion** - iOS/Android app for property management
 
 ### Phase 3: Business Intelligence
-- [ ] **CRM Integration** - Lead management and automated follow-up
-- [ ] **Email Marketing Automation** - Newsletter and drip campaigns
-- [ ] **Advanced Lead Scoring** - AI-powered lead qualification
-- [ ] **Property Valuation Tools** - Automated property assessment
-- [ ] **Guest Communication Portal** - Centralized guest messaging
-- [ ] **Maintenance Management** - Work order and vendor management
 - [ ] **Document Management** - Contract and license document storage
-
-### Phase 4: Market Expansion
-- [ ] **Multi-Region Support** - Expansion beyond Portugal
-- [ ] **Currency Conversion** - Multi-currency support and conversion
-- [ ] **Legal Compliance Tools** - Region-specific regulation management
-- [ ] **Partner Portal** - External vendor and partner management
-- [ ] **API Marketplace** - Third-party integrations marketplace
-- [ ] **White-Label Solution** - Franchise-ready platform
-- [ ] **AI-Powered Insights** - Machine learning for market predictions
 
 ### Technical Enhancements
 - [ ] **Progressive Web App (PWA)** - Offline capabilities and push notifications
@@ -439,10 +420,7 @@ For support and questions:
 ### Integration Roadmap
 - [ ] **Social Media APIs** - Instagram property showcases
 - [ ] **Booking Platform APIs** - Airbnb, Booking.com synchronization
-- [ ] **Accounting Software** - QuickBooks, Xero integration
-- [ ] **Communication Tools** - WhatsApp Business, Slack integration
 - [ ] **IoT Integration** - Smart home device management
-- [ ] **Virtual Tour Platform** - 360° property tours
 - [ ] **Review Management** - Automated review collection and response
 
 ---
